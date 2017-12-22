@@ -54,7 +54,7 @@ pickImageFromAlbum(on: self, withEdit: true)
 
 ## Author
 
-iamchiwon, iamchiwon@itsdcode.com
+iamchiwon, iamchiwon@gmail.com
 
 ## License
 
