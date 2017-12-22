@@ -24,6 +24,12 @@ class ViewController: UIViewController {
         let today: String = Date().formatted("YYYY-MM-dd")
         print(today)
 
+        runOnSimulatorOnly {
+            print("simulator")
+        }
+
+        let needUpdate: Bool = isUpdateAvailable()
+        
         
     }
 }

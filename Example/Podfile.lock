@@ -1,5 +1,5 @@
 PODS:
-  - CWUtils (0.4.0):
+  - CWUtils (0.5.0):
     - RxCocoa
     - RxOptional
     - RxSwift
@@ -18,7 +18,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  CWUtils: 4975e46bb08f91c29908f2cbde7b8add72d8a129
+  CWUtils: 4dacbc2b539f67d78f3ad289dba9f36650eaa43f
   RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
   RxOptional: e5448d3e21024489e07c31f6a262f2b50c975367
   RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334

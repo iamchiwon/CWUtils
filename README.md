@@ -1,15 +1,8 @@
 # CWUtils
 
-[![CI Status](http://img.shields.io/travis/iamchiwon/CWUtils.svg?style=flat)](https://travis-ci.org/iamchiwon/CWUtils)
 [![Version](https://img.shields.io/cocoapods/v/CWUtils.svg?style=flat)](http://cocoapods.org/pods/CWUtils)
 [![License](https://img.shields.io/cocoapods/l/CWUtils.svg?style=flat)](http://cocoapods.org/pods/CWUtils)
 [![Platform](https://img.shields.io/cocoapods/p/CWUtils.svg?style=flat)](http://cocoapods.org/pods/CWUtils)
-
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
 
 ## Installation
 
@@ -19,6 +12,45 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'CWUtils'
 ```
+
+## Dependancies
+
+ - RxSwift
+
+## Sample Code
+
+#### Logs
+
+```swift
+DLog("log for debug build only")
+ELog("error log for all build")
+```
+
+#### Device
+
+```swift
+runOnSimulatorOnly {
+    print("running on simulator")
+}
+runOnDeviceOnly {
+    print("running on device")
+}
+```
+
+#### Version Check
+
+```swift
+let needUpdate: Bool = isUpdateAvailable(
+```
+
+### RxSwift Used
+
+#### Image Picker
+```swift
+pickImageFromAlbum(on: self, withEdit: true)
+    .subscribe(onNext: {  self.imageView.image = $0 })
+```
+
 
 ## Author
 
