@@ -40,7 +40,7 @@ runOnDeviceOnly {
 #### Version Check
 
 ```swift
-let needUpdate: Bool = isUpdateAvailable(
+let needUpdate: Bool = isUpdateAvailable()
 ```
 
 ### RxSwift Used
