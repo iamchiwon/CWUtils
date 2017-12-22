@@ -10,11 +10,11 @@ import Foundation
 
 extension Date {
     
-    open static func currentTimeInMilli() -> Int {
+    public static func currentTimeInMilli() -> Int {
         return Date().timeInMilli()
     }
     
-    open func timeInMilli() -> Int {
+    public func timeInMilli() -> Int {
         return Int(self.timeIntervalSince1970 / 1000.0)
     }
     
