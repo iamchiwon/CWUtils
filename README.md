@@ -53,6 +53,15 @@ let isEmail = "nobody@email.com".isValid(withType: .email)
 let isEmail2 = "nobody@email.com".isValid(withRegEx: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}")
 ```
 
+#### Strings
+
+```swift
+let url = "www.apple.com".url()
+let base64 = "hello world".base64()
+let trimmed = "   hello world   \n \n    ".trim()
+let localized = "Hello World".localized()
+```
+
 ### UI
 
 #### subview
