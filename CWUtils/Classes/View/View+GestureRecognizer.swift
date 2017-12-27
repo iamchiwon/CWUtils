@@ -8,16 +8,22 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 
 extension UIView {
 
-    public func whenTouched(_ numberOfTapsRequired: Int = 1) -> Observable<UITapGestureRecognizer> {
+    public func addTapGestureRecognizer(_ numberOfTapsRequired: Int = 1) -> Observable<UITapGestureRecognizer> {
         let tapGesture = UITapGestureRecognizer()
         tapGesture.numberOfTapsRequired = numberOfTapsRequired
         self.isUserInteractionEnabled = true
         self.addGestureRecognizer(tapGesture)
         return tapGesture.rx.event.asDriver().asObservable()
+    }
+
+    public func addSwipeGestureRecognizer() -> Observable<UISwipeGestureRecognizer> {
+        let swipeGesture = UISwipeGestureRecognizer()
+        self.isUserInteractionEnabled = true
+        self.addGestureRecognizer(swipeGesture)
+        return swipeGesture.rx.event.asDriver().asObservable()
     }
 
 }

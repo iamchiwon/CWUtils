@@ -39,3 +39,11 @@ public func isUpdateAvailable() -> Bool {
     return false
 }
 
+public func currentApplicationVersion() -> String {
+    if let info = Bundle.main.infoDictionary,
+        let currentVersion = info["CFBundleShortVersionString"] as? String {
+        return currentVersion
+    }
+    return ""
+}
+

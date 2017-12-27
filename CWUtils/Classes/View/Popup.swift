@@ -8,7 +8,7 @@
 
 import UIKit
 
-public func cwAlertShow(on base: UIViewController,
+public func popupOK(on base: UIViewController,
                         title: String,
                         message: String?,
                         completion: (() -> ())? = nil) {
@@ -27,7 +27,7 @@ public func cwAlertShow(on base: UIViewController,
     base.present(alert, animated: true, completion: nil)
 }
 
-public func cwAlertQuestion(on base: UIViewController,
+public func popupOkCancel(on base: UIViewController,
                             title: String,
                             message: String,
                             onOk: @escaping () -> ()) {

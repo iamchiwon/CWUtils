@@ -9,9 +9,13 @@
 import UIKit
 
 extension UIImage {
-    public func resizeImageWith(newSize: CGSize) -> UIImage {
-        let horizontalRatio = newSize.width / size.width
-        let verticalRatio = newSize.height / size.height
+    public func resizedToScreen() -> UIImage {
+        return resized(maxSize: UIScreen.main.bounds.size)
+    }
+
+    public func resized(maxSize: CGSize) -> UIImage {
+        let horizontalRatio = maxSize.width / size.width
+        let verticalRatio = maxSize.height / size.height
 
         let ratio = max(horizontalRatio, verticalRatio)
         if ratio >= 1.0 { return self }

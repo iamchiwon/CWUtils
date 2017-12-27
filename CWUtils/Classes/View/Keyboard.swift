@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-public func cwWhenKeyboardShow() -> Observable<(CGFloat, TimeInterval)> {
+public func whenKeyboardShowNotification() -> Observable<(CGFloat, TimeInterval)> {
     return NotificationCenter.default.rx
         .notification(NSNotification.Name.UIKeyboardWillShow)
         .map({ notification -> (height: CGFloat, duration: TimeInterval) in
@@ -20,7 +20,7 @@ public func cwWhenKeyboardShow() -> Observable<(CGFloat, TimeInterval)> {
         })
 }
 
-public func cwEhanKeyboardHide() -> Observable<TimeInterval> {
+public func whenKeyboardHideNotification() -> Observable<TimeInterval> {
     return NotificationCenter.default.rx
         .notification(NSNotification.Name.UIKeyboardWillHide)
         .map({ notification -> TimeInterval in
