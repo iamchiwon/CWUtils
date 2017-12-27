@@ -111,7 +111,7 @@ view.addSwipeGestureRecognizer()
 ### Button
 
 ```swift
-//dictinct double touched
+//prevent double touched
 view.button(100)?..whenTouchUpInside(thro)
     .subscribe(onNext: { button in
     })
