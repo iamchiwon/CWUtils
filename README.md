@@ -62,6 +62,29 @@ let trimmed = "   hello world   \n \n    ".trim()
 let localized = "Hello World".localized()
 ```
 
+#### Array
+```swift
+struct Data : Equatable {}
+var array: [Data]
+//--------
+let data = Data()
+let exists: Bool = array.exists(data)
+let index: Int = array.indexOf(data)
+let array2 = array.removed(data)
+array.remove(item: data) //mutating
+```
+
+#### Codable
+```swift
+struct Data : Codable {}
+//--------
+let data = Data()
+let dictionary: [String:Any] = data.dictionary()
+let jsonString: String = data.json()
+let jsonString2: String = dictionary.json()
+let data2: Data = dictionary.decode()
+```
+
 ### UI
 
 #### subview
@@ -112,7 +135,7 @@ view.addSwipeGestureRecognizer()
 
 ```swift
 //prevent double touched
-view.button(100)?..whenTouchUpInside(thro)
+view.button(100)?.whenTouchUpInside(thro)
     .subscribe(onNext: { button in
     })
 ```

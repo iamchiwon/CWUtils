@@ -10,9 +10,20 @@ import UIKit
 import RxSwift
 import CWUtils
 
+struct Book: Codable, Equatable {
+    let ibsn: String
+    let title: String
+    let auther: String
+
+    static func == (left: Book, right: Book) -> Bool {
+        return left.ibsn == right.ibsn
+    }
+}
+
 class ViewController: UIViewController {
 
     let disposeBag = DisposeBag()
+    var books: [Book] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +33,27 @@ class ViewController: UIViewController {
 
         let timeInMillie: Int = Date().timeInMilli()
         print(timeInMillie)
+
+        books.append(Book(ibsn: "ibsn0001", title: "Book1", auther: "Auther1"))
+        books.append(Book(ibsn: "ibsn0002", title: "Book2", auther: "Auther2"))
+        books.append(Book(ibsn: "ibsn0003", title: "Book3", auther: "Auther3"))
+        books.append(Book(ibsn: "ibsn0004", title: "Book4", auther: "Auther4"))
+
+        if let indexOfBook3 = books.indexOf(Book(ibsn: "ibsn0003", title: "Book3", auther: "Auther3")) {
+            print("\(indexOfBook3)")
+        }
+        _ = books.remove(item: Book(ibsn: "ibsn0002", title: "Book2", auther: "Auther2"))
+        print("\(books)")
+
+        let book5 = Book(ibsn: "ibsn0005", title: "Book5", auther: "Auther5")
+        let dictionary = book5.dictionary()
+        print("\(dictionary)")
+
+        let json = dictionary.json()
+        print("\(json)")
+
+        let decoded: Book = dictionary.decode()!
+        print("\(decoded)")
 
         /** IMAGE SET **/
 

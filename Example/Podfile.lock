@@ -3,12 +3,12 @@ PODS:
     - RxCocoa
     - RxOptional
     - RxSwift
-  - RxCocoa (4.0.0):
+  - RxCocoa (4.1.0):
     - RxSwift (~> 4.0)
   - RxOptional (3.3.0):
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-  - RxSwift (4.0.0)
+  - RxSwift (4.1.0)
 
 DEPENDENCIES:
   - CWUtils (from `../`)
@@ -19,9 +19,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CWUtils: 1d88e891d880dd94cf209a0b5c4e8782fede7372
-  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
+  RxCocoa: cc1fec49cdc8fabe645964de7c51c099a36c2aa8
   RxOptional: e5448d3e21024489e07c31f6a262f2b50c975367
-  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
+  RxSwift: 4219941c1244c88002901bd87a69d3aea9ae71f0
 
 PODFILE CHECKSUM: 3efd53be67000cfd61f4f75c3fd6462db5cca021
 
