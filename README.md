@@ -53,6 +53,8 @@ let isEmail = "nobody@email.com".isValid(withType: .email)
 let isEmail2 = "nobody@email.com".isValid(withRegEx: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}")
 ```
 
+### Extensions
+
 #### Strings
 
 ```swift
