@@ -97,6 +97,14 @@ let data2: Data = dictionary.decode()
 
 ### UI
 
+#### UIColor
+
+```swift
+let red = UIColor(red:255, green:0, blue:0)
+let blue = UIColor(0x00FF00)
+let green = UIColor("#0000FF")
+```
+
 #### subview
 
 ```swift
