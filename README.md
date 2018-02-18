@@ -81,6 +81,7 @@ let exists: Bool = array.exists(data)
 let index: Int = array.indexOf(data)
 let array2 = array.removed(data)
 array.remove(item: data) //mutating
+let shuffled = array.shuffled()
 ```
 
 #### Codable
