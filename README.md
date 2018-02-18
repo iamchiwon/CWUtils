@@ -137,7 +137,7 @@ let resizedForScreen = original?.resizedToScreen()
 
 ### RxSwift
 
-### GestureRecognizer
+#### GestureRecognizer
 
 ```swift
 view.addTapGestureRecognizer()
@@ -149,7 +149,7 @@ view.addSwipeGestureRecognizer()
     })
 ```
 
-### Button
+#### Button
 
 ```swift
 //prevent double touched
@@ -158,7 +158,7 @@ view.button(100)?.whenTouchUpInside(thro)
     })
 ```
 
-### Keyboard Notification
+#### Keyboard Notification
 
 ```swift
 whenKeyboardShowNotification()
@@ -170,6 +170,15 @@ whenKeyboardHideNotification()
     .subscribe(onNext: { (duration: TimeInterval) in
     })
     .disposed(by: disposeBag)
+```
+
+#### ScrollView 
+
+```swift
+collectionView.needsMore()
+	.filter { !self.isLoading }
+	.subscribe(onNext: { self.loadMore() })
+	.disposed(by: disposeBag)
 ```
 
 #### Image Picker
