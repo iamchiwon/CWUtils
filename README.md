@@ -64,6 +64,13 @@ let trimmed = "   hello world   \n \n    ".trim()
 let localized = "Hello World".localized()
 ```
 
+#### Date
+
+```swift
+let serverDateParser = Date.fromFormat("yyyy-MM-dd HH:mm:ss")
+let date = serverDateParser("2018-02-17 17:00:00")
+```
+
 #### Array
 ```swift
 struct Data : Equatable {}
