@@ -135,6 +135,17 @@ let resized = original?.resized(maxSize: CGSize(width: 100, height: 100))
 let resizedForScreen = original?.resizedToScreen()
 ```
 
+#### View Createor (with SnapKit)
+
+```swift
+let rect = createView(UIView(), parent: self.view, setting: { v in
+            v.backgroundColor = .red
+        }, constraint: { m in
+            m.top.left.equalToSuperview()
+            m.width.height.equalTo(100)
+        })
+```
+
 ### RxSwift
 
 #### GestureRecognizer
