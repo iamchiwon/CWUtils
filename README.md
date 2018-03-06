@@ -16,6 +16,9 @@ pod 'CWUtils'
 ## Dependancies
 
  - RxSwift
+ - RxCocoa
+ - RxOptional
+ - SnapKit
 
 ## Sample Code
 
