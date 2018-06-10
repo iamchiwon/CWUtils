@@ -201,6 +201,9 @@ pickImageFromAlbum(on: self, withEdit: true)
     .subscribe(onNext: {  self.imageView.image = $0 })
 ```
 
+## History
+
+- 0.9.1 : Support Swift 4.2
 
 ## Author
 
