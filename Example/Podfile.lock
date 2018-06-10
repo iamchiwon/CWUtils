@@ -4,28 +4,35 @@ PODS:
     - RxOptional
     - RxSwift
     - SnapKit
-  - RxCocoa (4.1.2):
+  - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
-  - RxOptional (3.3.0):
+  - RxOptional (3.4.0):
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-  - RxSwift (4.1.2)
+  - RxSwift (4.2.0)
   - SnapKit (4.0.0)
 
 DEPENDENCIES:
   - CWUtils (from `../`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - RxCocoa
+    - RxOptional
+    - RxSwift
+    - SnapKit
+
 EXTERNAL SOURCES:
   CWUtils:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   CWUtils: 71c1f59921d4f99428df4efa8c5790b4197157f1
-  RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
-  RxOptional: e5448d3e21024489e07c31f6a262f2b50c975367
-  RxSwift: e49536837d9901277638493ea537394d4b55f570
+  RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
+  RxOptional: fabc37fc8e3cf4c336ebaeb5c92b576c64b2e6c5
+  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
 PODFILE CHECKSUM: 3efd53be67000cfd61f4f75c3fd6462db5cca021
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3
