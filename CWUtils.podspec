@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CWUtils"
-  s.version      = "0.9.0"
+  s.version      = "0.9.1"
   s.summary      = "iOS 어플리케이션 개발용 유틸리티 모음"
   s.description  = "RxSwift 를 기반으로 하고 있음. (Dependancy : RxSwift, RxCocoa, RxOptional)"
 
