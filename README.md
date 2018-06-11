@@ -203,7 +203,7 @@ pickImageFromAlbum(on: self, withEdit: true)
 
 ## History
 
-- 0.9.1 : Support Swift 4.2
+- 0.9.2 : Support Swift 4.2
 
 ## Author
 
