@@ -137,7 +137,7 @@ class ViewController: UIViewController {
         if needUpdate {
             popupOkCancel(on: self, title: "업데이트", message: "업데이트가 필요합니다.", onOk: {
                 let urlString = "itms-apps://itunes.apple.com/app/id0000000000"
-                UIApplication.shared.openURL(URL(string: urlString)!)
+                UIApplication.shared.open(urlString.url(), options: [:], completionHandler: nil)
             })
         } else {
             popupOK(on: self, title: "업데이트", message: "최신버전입니다.")
