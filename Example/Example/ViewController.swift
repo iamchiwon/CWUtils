@@ -85,6 +85,12 @@ class ViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
+        self.view.textfield(101)?.rx.controlEvent(event: .editingDidEndOnExit)
+            .map({ $0.sender.text?.trim() ?? "" })
+            .filter(isNotEmpty)
+            .subscribe(onNext: { print($0) })
+            .disposed(by: disposeBag)
+
         self.view.textfield(101)?.rx.text
             .asObservable()
             .bind(to: view.label(201)!.rx.text)
