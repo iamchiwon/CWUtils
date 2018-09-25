@@ -12,19 +12,19 @@ import RxCocoa
 
 public func whenKeyboardShowNotification() -> Observable<(CGFloat, TimeInterval)> {
     return NotificationCenter.default.rx
-        .notification(NSNotification.Name.UIKeyboardWillShow)
+        .notification(UIResponder.keyboardWillShowNotification)
         .map({ notification -> (height: CGFloat, duration: TimeInterval) in
-            let keyboardSize = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue
-            let durationNumber = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
+            let keyboardSize = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+            let durationNumber = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber
             return (height: keyboardSize.cgRectValue.size.height, duration: durationNumber.doubleValue)
         })
 }
 
 public func whenKeyboardHideNotification() -> Observable<TimeInterval> {
     return NotificationCenter.default.rx
-        .notification(NSNotification.Name.UIKeyboardWillHide)
+        .notification(UIResponder.keyboardWillHideNotification)
         .map({ notification -> TimeInterval in
-            let durationNumber = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
+            let durationNumber = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber
             return durationNumber.doubleValue
         })
 }

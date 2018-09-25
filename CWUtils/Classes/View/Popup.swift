@@ -15,10 +15,10 @@ public func popupOK(on base: UIViewController,
 
     let alert = UIAlertController(title: title,
                                   message: message,
-                                  preferredStyle: UIAlertControllerStyle.alert)
+                                  preferredStyle: UIAlertController.Style.alert)
 
     alert.addAction(UIAlertAction(title: "OK".localized(),
-                                  style: UIAlertActionStyle.default,
+                                  style: UIAlertAction.Style.default,
                                   handler: { _ in
                                       if let completion = completion {
                                           completion()
@@ -34,15 +34,15 @@ public func popupOkCancel(on base: UIViewController,
 
     let alert = UIAlertController(title: title,
                                   message: message,
-                                  preferredStyle: UIAlertControllerStyle.alert)
+                                  preferredStyle: UIAlertController.Style.alert)
 
     alert.addAction( UIAlertAction(title: "OK".localized(),
-                                   style: UIAlertActionStyle.default,
+                                   style: UIAlertAction.Style.default,
                                    handler: { _ in
                                        onOk()
                                    }))
     alert.addAction(UIAlertAction(title: "Cancel".localized(),
-                                  style: UIAlertActionStyle.cancel,
+                                  style: UIAlertAction.Style.cancel,
                                   handler: nil))
     base.present(alert, animated: true, completion: nil)
 }

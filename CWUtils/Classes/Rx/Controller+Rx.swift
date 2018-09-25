@@ -11,23 +11,23 @@ import RxSwift
 import RxCocoa
 
 public struct TargetedControlEvent<T> {
-    public var event: UIControlEvents
+    public var event: UIControl.Event
     public var sender: T
 }
 
 extension Reactive where Base: UIControl {
     
-    public func controlEvent(event: UIControlEvents) -> Observable<TargetedControlEvent<Base>> {
+    public func controlEvent(event: UIControl.Event) -> Observable<TargetedControlEvent<Base>> {
         let targetedControlEvent = TargetedControlEvent(event: event, sender: base)
         return base.rx.controlEvent(event).map({ _ in targetedControlEvent })
     }
     
-    public func controlEvent(events: [UIControlEvents]) -> Observable<TargetedControlEvent<Base>> {
+    public func controlEvent(events: [UIControl.Event]) -> Observable<TargetedControlEvent<Base>> {
         return Observable.merge(events.map({ controlEvent(event: $0) }))
     }
     
     public var allTouchEvents: Observable<TargetedControlEvent<Base>> {
-        let touchEvents: [UIControlEvents] = [
+        let touchEvents: [UIControl.Event] = [
             .touchDownRepeat,
             .touchDragInside,
             .touchDragOutside,
@@ -41,7 +41,7 @@ extension Reactive where Base: UIControl {
     }
     
     public var allEditingEvents: Observable<TargetedControlEvent<Base>> {
-        let editingEvents: [UIControlEvents] = [
+        let editingEvents: [UIControl.Event] = [
             .editingDidBegin,
             .editingChanged,
             .editingDidEnd,
@@ -51,7 +51,7 @@ extension Reactive where Base: UIControl {
     }
     
     public var allEvents: Observable<TargetedControlEvent<Base>> {
-        let events: [UIControlEvents] = [
+        let events: [UIControl.Event] = [
             .valueChanged,
             .applicationReserved,
             .systemReserved

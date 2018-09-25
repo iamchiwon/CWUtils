@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 public func pickImageFromAlbum(on baseVC: UIViewController,
-                               withEdit allowsEditing: Bool = true) -> Observable<UIImage> {
+    withEdit allowsEditing: Bool = true) -> Observable<UIImage> {
 
     let subject = PublishSubject<UIImage>()
 
@@ -20,14 +20,14 @@ public func pickImageFromAlbum(on baseVC: UIViewController,
         var allowsEditing = false
 
         func imagePickerController(_ picker: UIImagePickerController,
-                                   didFinishPickingMediaWithInfo info: [String: Any]) {
+            didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
 
             if allowsEditing,
-                let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+                let editedImage = info[.editedImage] as? UIImage {
                 subject?.onNext(editedImage)
 
             } else if !allowsEditing,
-                let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+                let originalImage = info[.originalImage] as? UIImage {
                 subject?.onNext(originalImage)
             }
 
