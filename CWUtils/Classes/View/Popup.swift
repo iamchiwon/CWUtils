@@ -11,14 +11,15 @@ import UIKit
 public func popupOK(on base: UIViewController,
                         title: String,
                         message: String?,
+                        buttonTitle: String = "OK",
                         completion: (() -> ())? = nil) {
 
     let alert = UIAlertController(title: title,
                                   message: message,
-                                  preferredStyle: UIAlertControllerStyle.alert)
+                                  preferredStyle: UIAlertController.Style.alert)
 
-    alert.addAction(UIAlertAction(title: "OK".localized(),
-                                  style: UIAlertActionStyle.default,
+    alert.addAction(UIAlertAction(title: buttonTitle.localized(),
+                                  style: UIAlertAction.Style.default,
                                   handler: { _ in
                                       if let completion = completion {
                                           completion()
@@ -30,19 +31,21 @@ public func popupOK(on base: UIViewController,
 public func popupOkCancel(on base: UIViewController,
                             title: String,
                             message: String,
+                            okButtonTitle: String = "OK",
+                            cancelButtonTitle: String = "Cancel",
                             onOk: @escaping () -> ()) {
 
     let alert = UIAlertController(title: title,
                                   message: message,
-                                  preferredStyle: UIAlertControllerStyle.alert)
+                                  preferredStyle: UIAlertController.Style.alert)
 
-    alert.addAction( UIAlertAction(title: "OK".localized(),
-                                   style: UIAlertActionStyle.default,
+    alert.addAction( UIAlertAction(title: okButtonTitle.localized(),
+                                   style: UIAlertAction.Style.default,
                                    handler: { _ in
                                        onOk()
                                    }))
-    alert.addAction(UIAlertAction(title: "Cancel".localized(),
-                                  style: UIAlertActionStyle.cancel,
+    alert.addAction(UIAlertAction(title: cancelButtonTitle.localized(),
+                                  style: UIAlertAction.Style.cancel,
                                   handler: nil))
     base.present(alert, animated: true, completion: nil)
 }
