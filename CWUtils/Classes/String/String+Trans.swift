@@ -14,10 +14,14 @@ extension String {
     }
 
     public func url() -> URL {
-        if let url = URL(string: self.trim()) {
+        if let url = URL(string: self) {
             return url
         }
-        return NSURLComponents().url! //empty url
+        if let urlString = self.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+            let url = URL(string: urlString) {
+            return url
+        }
+        return NSURLComponents().url! // empty url
     }
 
     public func base64() -> String {
@@ -33,5 +37,9 @@ extension String {
 
     public func replace(_ originalString: String, with newString: String) -> String {
         return self.replacingOccurrences(of: originalString, with: newString)
+    }
+    
+    public static var uuid: String {
+        return UUID().uuidString
     }
 }

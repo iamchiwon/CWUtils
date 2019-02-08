@@ -10,10 +10,14 @@ import Foundation
 
 extension Int {
 
-    public func currencyKRW() -> String {
+    public func decimal() -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = NumberFormatter.Style.decimal
-        return "￦ " + numberFormatter.string(from: NSNumber(value: self))!
+        return numberFormatter.string(from: NSNumber(value: self))!
+    }
+    
+    public func currencyKRW() -> String {
+        return "￦ " + decimal()
     }
 }
 
