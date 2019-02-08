@@ -18,32 +18,17 @@ private func functionName(_ function: String) -> String {
     return String(functionName)
 }
 
-#if DEBUG
+public func VLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
+    print("📢 [\(filename(file))]\(functionName(function))(\(line)): \(message)")
+}
 
-    public func VLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
-        print("📢 [\(filename(file))]\(functionName(function))(\(line)): \(message)")
-    }
+public func DLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
+    print("🐞 [\(filename(file))]\(functionName(function))(\(line)): \(message)")
+}
 
-    public func DLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
-        print("🐞 [\(filename(file))]\(functionName(function))(\(line)): \(message)")
-    }
-
-    public func DLog<T>(with m: () -> T, file: String = #file, function: String = #function, line: Int = #line) {
-        print("🐞 [\(filename(file))]\(functionName(function))(\(line)): \(m())")
-    }
-
-#else
-
-    public func VLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
-    }
-
-    public func DLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
-    }
-
-    public func DLog<T>(with m: () -> T, file: String = #file, function: String = #function, line: Int = #line) {
-    }
-
-#endif
+public func DLog<T>(with m: () -> T, file: String = #file, function: String = #function, line: Int = #line) {
+    print("🐞 [\(filename(file))]\(functionName(function))(\(line)): \(m())")
+}
 
 public func SLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
     print("📣 [\(filename(file))]\(functionName(function))(\(line)): \(message)")
