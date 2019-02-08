@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import CWUtils
+import RxOptional
 
 struct Book: Codable, Equatable {
     let ibsn: String
@@ -58,7 +59,9 @@ class ViewController: UIViewController {
         /** IMAGE SET **/
 
         view.imageView(100)?.addTapGestureRecognizer()
-            .flatMap({ [unowned self] _ in pickImageFromAlbum(on: self, withEdit: true) })
+            .flatMap({ _ in
+                UIImagePickerController.pickImage(on: self, allowsEditing: true)
+            })
             .map({ original -> UIImage in
                 let resized = original.resized(maxSize: CGSize(width: 100, height: 100))
                 print("resized(100,100) : \(resized)")
@@ -86,7 +89,8 @@ class ViewController: UIViewController {
             .disposed(by: disposeBag)
 
         self.view.textfield(101)?.rx.controlEvent(event: .editingDidEndOnExit)
-            .map({ $0.sender.text?.trim() ?? "" })
+            .map({ $0.sender.text?.trim() })
+            .filterNil()
             .filter(isNotEmpty)
             .subscribe(onNext: { print($0) })
             .disposed(by: disposeBag)

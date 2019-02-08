@@ -11,13 +11,14 @@ import UIKit
 public func popupOK(on base: UIViewController,
                         title: String,
                         message: String?,
+                        buttonTitle: String = "OK",
                         completion: (() -> ())? = nil) {
 
     let alert = UIAlertController(title: title,
                                   message: message,
                                   preferredStyle: UIAlertController.Style.alert)
 
-    alert.addAction(UIAlertAction(title: "OK".localized(),
+    alert.addAction(UIAlertAction(title: buttonTitle.localized(),
                                   style: UIAlertAction.Style.default,
                                   handler: { _ in
                                       if let completion = completion {
@@ -30,18 +31,20 @@ public func popupOK(on base: UIViewController,
 public func popupOkCancel(on base: UIViewController,
                             title: String,
                             message: String,
+                            okButtonTitle: String = "OK",
+                            cancelButtonTitle: String = "Cancel",
                             onOk: @escaping () -> ()) {
 
     let alert = UIAlertController(title: title,
                                   message: message,
                                   preferredStyle: UIAlertController.Style.alert)
 
-    alert.addAction( UIAlertAction(title: "OK".localized(),
+    alert.addAction( UIAlertAction(title: okButtonTitle.localized(),
                                    style: UIAlertAction.Style.default,
                                    handler: { _ in
                                        onOk()
                                    }))
-    alert.addAction(UIAlertAction(title: "Cancel".localized(),
+    alert.addAction(UIAlertAction(title: cancelButtonTitle.localized(),
                                   style: UIAlertAction.Style.cancel,
                                   handler: nil))
     base.present(alert, animated: true, completion: nil)

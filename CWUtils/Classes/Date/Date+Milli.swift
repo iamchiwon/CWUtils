@@ -18,4 +18,7 @@ extension Date {
         return Int(self.timeIntervalSince1970 / 1000.0)
     }
     
+    init(milli: UInt64) {
+        self.init(timeIntervalSince1970: (TimeInterval(milli) / 1000.0))
+    }
 }

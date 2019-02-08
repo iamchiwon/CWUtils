@@ -19,4 +19,9 @@ extension URL {
                 return params
             }) ?? [:]
     }
+    
+    public subscript(queryParam: String) -> String {
+        guard let url = URLComponents(string: self.absoluteString) else { return "" }
+        return url.queryItems?.first(where: { $0.name == queryParam })?.value ?? ""
+    }
 }

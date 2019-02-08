@@ -15,10 +15,13 @@ pod 'CWUtils'
 
 ## Dependancies
 
- - RxSwift
- - RxCocoa
- - RxOptional
- - SnapKit
+ - [RxSwift](https://github.com/ReactiveX/RxSwift)
+ - [RxCocoa](https://github.com/ReactiveX/RxSwift/tree/master/RxCocoa)
+ - [RxOptional](https://github.com/RxSwiftCommunity/RxOptional)
+ - [RxViewController](https://github.com/devxoul/RxViewController)
+ - [SnapKit](https://github.com/SnapKit/SnapKit)
+ - [Reusable](https://github.com/AliSoftware/Reusable)
+ - [Then](https://github.com/devxoul/Then)
 
 ## Sample Code
 

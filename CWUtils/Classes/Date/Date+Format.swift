@@ -19,6 +19,10 @@ extension Date {
         }
     }
     
+    public static func fromServerFormat() -> (String) -> Date? {
+        return fromFormat("yyyy-MM-dd HH:mm:ss")
+    }
+    
     public func formatted(_ format: String) -> String {
         let df = DateFormatter()
         df.dateFormat = format
@@ -26,4 +30,11 @@ extension Date {
         return df.string(from: self)
     }
     
+    public func serverFormat() -> String {
+        return self.formatted("yyyy-MM-dd HH:mm:ss")
+    }
+    
+    public func shortDate() -> String {
+        return self.formatted("yyyyMMdd")
+    }
 }

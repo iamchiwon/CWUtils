@@ -32,3 +32,21 @@ public func isEmpty(_ a: String?) -> Bool {
 public func isNotEmpty(_ a: String?) -> Bool {
     return !isEmpty(a)
 }
+
+func curry<A, B, C>(_ f: @escaping ((A, B) -> C)) -> (A) -> (B) -> C {
+    return { a in
+        return { b in
+            return f(a, b)
+        }
+    }
+}
+
+func curry<A, B, C, D>(_ f: @escaping ((A, B, C) -> D)) -> (A) -> (B) -> (C) -> D {
+    return { a in
+        return { b in
+            return { c in
+                return f(a, b, c)
+            }
+        }
+    }
+}
