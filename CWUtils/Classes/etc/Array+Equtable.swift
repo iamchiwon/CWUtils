@@ -31,4 +31,9 @@ extension Array where Element: Equatable {
     public func removed(_ item: Element) -> [Element] {
         return self.filter({ $0 != item })
     }
+    
+    public func findAndReplace(_ selector: (Element) -> Bool,
+                               replaceWith: (Element) -> Element) -> [Element] {
+        return map { item in selector(item) ? replaceWith(item) : item }
+    }
 }
