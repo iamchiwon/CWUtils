@@ -19,6 +19,9 @@ Pod::Spec.new do |s|
   s.dependency "RxSwift"
   s.dependency "RxCocoa"
   s.dependency "RxOptional"
+  s.dependency "RxViewController"
   s.dependency "SnapKit"
+  s.dependency "Reusable"
+  s.dependency "Then"
 
 end
