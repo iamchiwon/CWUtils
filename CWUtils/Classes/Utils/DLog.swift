@@ -18,45 +18,45 @@ private func functionName(_ function: String) -> String {
     return String(functionName)
 }
 
-#if DCODE_DEBUG
+#if DEBUG
 
-    func VLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
+    public func VLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
         print("📢 [\(filename(file))]\(functionName(function))(\(line)): \(message)")
     }
 
-    func DLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
+    public func DLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
         print("🐞 [\(filename(file))]\(functionName(function))(\(line)): \(message)")
     }
 
-    func DLog<T>(with m: () -> T, file: String = #file, function: String = #function, line: Int = #line) {
+    public func DLog<T>(with m: () -> T, file: String = #file, function: String = #function, line: Int = #line) {
         print("🐞 [\(filename(file))]\(functionName(function))(\(line)): \(m())")
     }
 
 #else
 
-    func VLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
+    public func VLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
     }
 
-    func DLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
+    public func DLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
     }
 
-    func DLog<T>(with m: () -> T, file: String = #file, function: String = #function, line: Int = #line) {
+    public func DLog<T>(with m: () -> T, file: String = #file, function: String = #function, line: Int = #line) {
     }
 
 #endif
 
-func SLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
+public func SLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
     print("📣 [\(filename(file))]\(functionName(function))(\(line)): \(message)")
 }
 
-func WLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
+public func WLog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
     print("⚠️ [\(filename(file))]\(functionName(function))(\(line)): \(message)")
 }
 
-func ELog(error: Error, file: String = #file, function: String = #function, line: Int = #line) {
+public func ELog(error: Error, file: String = #file, function: String = #function, line: Int = #line) {
     print("🚫 [\(filename(file))]\(functionName(function))(\(line)): \(error.localizedDescription)")
 }
 
-func ELog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
+public func ELog<T>(_ message: T, file: String = #file, function: String = #function, line: Int = #line) {
     print("🚫 [\(filename(file))]\(functionName(function))(\(line)): \(message)")
 }
