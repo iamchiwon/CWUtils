@@ -8,19 +8,19 @@
 import Foundation
 import Then
 
-func executeMainAsync(_ job: @escaping () -> Void) {
+public func executeMainAsync(_ job: @escaping () -> Void) {
     DispatchQueue.main.async {
         job()
     }
 }
 
-func execute(after: TimeInterval, job: @escaping () -> Void) {
+public func execute(after: TimeInterval, job: @escaping () -> Void) {
     DispatchQueue.main.asyncAfter(deadline: .now() + after) {
         job()
     }
 }
 
-func execute(daily forKey: String, job: @escaping () -> Void) {
+public func execute(daily forKey: String, job: @escaping () -> Void) {
     UserDefaults.standard.do { it in
         let lastDay = it.string(forKey: forKey)
         let today = Date().shortDate()
@@ -31,7 +31,7 @@ func execute(daily forKey: String, job: @escaping () -> Void) {
     }
 }
 
-func execute(once forKey: String, job: @escaping () -> Void) {
+public func execute(once forKey: String, job: @escaping () -> Void) {
     UserDefaults.standard.do { it in
         let lastDay = it.string(forKey: forKey)
         if lastDay == nil {
@@ -41,7 +41,7 @@ func execute(once forKey: String, job: @escaping () -> Void) {
     }
 }
 
-func resetExecuted(once forKey: String) {
+public func resetExecuted(once forKey: String) {
     UserDefaults.standard.do { it in
         it.set(nil, forKey: forKey)
     }
