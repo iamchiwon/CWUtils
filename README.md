@@ -4,6 +4,9 @@
 [![License](https://img.shields.io/cocoapods/l/CWUtils.svg?style=flat)](http://cocoapods.org/pods/CWUtils)
 [![Platform](https://img.shields.io/cocoapods/p/CWUtils.svg?style=flat)](http://cocoapods.org/pods/CWUtils)
 
+## Updated
+- 0.14.0 : Swift 5, target iOS 10.0
+
 ## Installation
 
 CWUtils is available through [CocoaPods](http://cocoapods.org). To install
@@ -17,11 +20,13 @@ pod 'CWUtils'
 
  - [RxSwift](https://github.com/ReactiveX/RxSwift)
  - [RxCocoa](https://github.com/ReactiveX/RxSwift/tree/master/RxCocoa)
+ - [RxSwiftExt](https://github.com/RxSwiftCommunity/RxSwiftExt)
  - [RxOptional](https://github.com/RxSwiftCommunity/RxOptional)
  - [RxViewController](https://github.com/devxoul/RxViewController)
  - [SnapKit](https://github.com/SnapKit/SnapKit)
  - [Reusable](https://github.com/AliSoftware/Reusable)
  - [Then](https://github.com/devxoul/Then)
+ - [Kingfisher](https://github.com/onevcat/Kingfisher)
 
 ## Sample Code
 
