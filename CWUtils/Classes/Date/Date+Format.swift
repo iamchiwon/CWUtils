@@ -37,4 +37,16 @@ extension Date {
     public func shortDate() -> String {
         return self.formatted("yyyyMMdd")
     }
+    
+    public func longDate() -> String {
+        return self.formatted("yyyy년 MM월 dd일")
+    }
+    
+    public func timestamp() -> String {
+        return self.formatted("yyyy/MM/dd HH:mm")
+    }
+    
+    public func timestampDetail() -> String {
+        return self.formatted("yyyy-MM-dd HH:mm:ss")
+    }
 }

@@ -28,3 +28,23 @@ public func whenKeyboardHideNotification() -> Observable<TimeInterval> {
             return durationNumber.doubleValue
         })
 }
+
+extension UIScrollView {
+    public func scrollToCenterWhenFocusedTextFieldBeganEdit(_ field: UITextField, moveMore: CGFloat = 0) -> Disposable {
+        return field.rx.controlEvent(event: UIControl.Event.editingDidBegin)
+            .map { $0.sender.calcAbsoluteRectInScreen() }
+            .map { bounds -> CGFloat in
+                let screenCenterY = UIScreen.main.bounds.height / 2
+                let fieldCenterY = bounds.centerY
+                let diff = fieldCenterY - screenCenterY
+                return max(diff, 0)
+            }
+            .subscribe(onNext: { [weak self] moveY in
+                guard let self = self else { return }
+                let current = self.contentOffset
+                let moveTo = CGPoint(x: current.x, y: current.y + moveY)
+                self.setContentOffset(moveTo, animated: true)
+            })
+    }
+}
+

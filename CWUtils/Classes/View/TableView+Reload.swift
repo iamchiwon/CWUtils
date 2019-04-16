@@ -8,11 +8,10 @@
 
 import UIKit
 
-extension UITableView {
-
-    public func reload(animation: UITableView.RowAnimation) {
-        let range = NSMakeRange(0, self.numberOfSections)
+public extension UITableView {
+    func reload(animation: UITableView.RowAnimation) {
+        let range = NSMakeRange(0, numberOfSections)
         let sections = NSIndexSet(indexesIn: range)
-        self.reloadSections(sections as IndexSet, with: animation)
+        reloadSections(sections as IndexSet, with: animation)
     }
 }

@@ -38,8 +38,13 @@ extension UIColor {
     }
     
     public static func fromHexString(_ rgbHex: String) -> UIColor {
-        let c2i = { "0123456789ABCDEF".index(of: $0)?.encodedOffset ?? 0 }
-        let hexValue = rgbHex.uppercased().map(c2i).reduce(0, { val, i in val * 16 + i })
-        return UIColor(rgb: hexValue)
+        return UIColor(rgb: Int.parseHex(rgbHex))
+    }
+}
+
+extension Int {
+    public static func parseHex(_ hex: String) -> Int {
+        let h2i = { "0123456789ABCDEF".firstIndex(of: $0)?.utf16Offset(in: "") ?? 0 }
+        return hex.uppercased().map(h2i).reduce(0, { val, i in val * 16 + i })
     }
 }

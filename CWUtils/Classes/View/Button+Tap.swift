@@ -6,13 +6,12 @@
 //  Copyright © 2017년 makecube. All rights reserved.
 //
 
-import UIKit
 import RxSwift
+import UIKit
 
-extension UIButton {
-
-    public func whenTouchUpInside(throttle dueTime: TimeInterval = 0.3) -> Observable<UIButton> {
-        return self.rx.tap.asDriver()
+public extension UIButton {
+    func whenTouchUpInside(throttle dueTime: TimeInterval = 0.3) -> Observable<UIButton> {
+        return rx.tap.asDriver()
             .throttle(dueTime, latest: false)
             .map({ self })
             .asObservable()

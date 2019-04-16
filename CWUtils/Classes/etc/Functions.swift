@@ -50,3 +50,20 @@ func curry<A, B, C, D>(_ f: @escaping ((A, B, C) -> D)) -> (A) -> (B) -> (C) -> 
         }
     }
 }
+
+func ratioMap(_ _min: CGFloat, _ _max: CGFloat) -> (CGFloat, CGFloat) -> (CGFloat) -> CGFloat {
+    return { start, end in
+        { value in
+            let mininum = min(start, end)
+            let maximum = max(start, end)
+            let result = start + (value - _min) * (end - start) / (_max - _min)
+            if result < mininum { return mininum }
+            if result > maximum { return maximum }
+            return result
+        }
+    }
+}
+
+func ratioMap(min: CGFloat, max: CGFloat, start: CGFloat, end: CGFloat) -> (CGFloat) -> CGFloat {
+    return ratioMap(min, max)(start, end)
+}

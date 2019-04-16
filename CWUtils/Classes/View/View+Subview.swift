@@ -8,10 +8,9 @@
 
 import UIKit
 
-extension UIView {
-
-    public func viewWithIdentifier(_ identifier: String) -> UIView? {
-        if identifier == self.accessibilityIdentifier { return self }
+public extension UIView {
+    func viewWithIdentifier(_ identifier: String) -> UIView? {
+        if identifier == accessibilityIdentifier { return self }
         for v in subviews {
             let sub = v.viewWithIdentifier(identifier)
             if sub != nil { return sub }
@@ -19,7 +18,7 @@ extension UIView {
         return nil
     }
 
-    public func constraintWithIdentifier(_ identifier: String) -> NSLayoutConstraint? {
+    func constraintWithIdentifier(_ identifier: String) -> NSLayoutConstraint? {
         var searchView: UIView? = self
         while searchView != nil {
             for constraint in searchView!.constraints as [NSLayoutConstraint] {
@@ -32,7 +31,7 @@ extension UIView {
         return nil
     }
 
-    public var parentViewController: UIViewController? {
+    var parentViewController: UIViewController? {
         var parentResponder: UIResponder? = self
         while parentResponder != nil {
             parentResponder = parentResponder!.next
@@ -43,19 +42,19 @@ extension UIView {
         return nil
     }
 
-    public func imageView(_ tag: Int) -> UIImageView? {
+    func imageView(_ tag: Int) -> UIImageView? {
         return viewWithTag(tag) as? UIImageView
     }
 
-    public func label(_ tag: Int) -> UILabel? {
+    func label(_ tag: Int) -> UILabel? {
         return viewWithTag(tag) as? UILabel
     }
 
-    public func button(_ tag: Int) -> UIButton? {
+    func button(_ tag: Int) -> UIButton? {
         return viewWithTag(tag) as? UIButton
     }
 
-    public func textfield(_ tag: Int) -> UITextField? {
+    func textfield(_ tag: Int) -> UITextField? {
         return viewWithTag(tag) as? UITextField
     }
 }

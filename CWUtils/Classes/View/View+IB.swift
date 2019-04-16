@@ -8,23 +8,24 @@
 
 import UIKit
 
-@IBDesignable extension UIView {
-
-    @IBInspectable public var borderColor: UIColor? {
+@IBDesignable
+public extension UIView {
+    @IBInspectable
+    var borderColor: UIColor? {
         set {
             layer.borderColor = newValue!.cgColor
         }
         get {
             if let color = layer.borderColor {
                 return UIColor(cgColor: color)
-            }
-                else {
-                    return nil
+            } else {
+                return nil
             }
         }
     }
 
-    @IBInspectable public var borderWidth: CGFloat {
+    @IBInspectable
+    var borderWidth: CGFloat {
         set {
             layer.borderWidth = newValue
         }
@@ -33,7 +34,8 @@ import UIKit
         }
     }
 
-    @IBInspectable public var cornerRadius: CGFloat {
+    @IBInspectable
+    var cornerRadius: CGFloat {
         set {
             layer.cornerRadius = newValue
             clipsToBounds = newValue > 0
@@ -43,21 +45,22 @@ import UIKit
         }
     }
 
-    @IBInspectable public var shadowColor: UIColor? {
+    @IBInspectable
+    var shadowColor: UIColor? {
         set {
             layer.shadowColor = newValue!.cgColor
         }
         get {
             if let color = layer.shadowColor {
                 return UIColor(cgColor: color)
-            }
-                else {
-                    return nil
+            } else {
+                return nil
             }
         }
     }
 
-    @IBInspectable public var shadowOpacity: Float {
+    @IBInspectable
+    var shadowOpacity: Float {
         set {
             layer.shadowOpacity = newValue
         }
@@ -66,7 +69,8 @@ import UIKit
         }
     }
 
-    @IBInspectable public var masksToBounds: Bool {
+    @IBInspectable
+    var masksToBounds: Bool {
         set {
             layer.masksToBounds = newValue
         }
@@ -75,7 +79,8 @@ import UIKit
         }
     }
 
-    @IBInspectable public var shadowRadius: CGFloat {
+    @IBInspectable
+    var shadowRadius: CGFloat {
         set {
             layer.shadowRadius = newValue
         }
@@ -84,7 +89,8 @@ import UIKit
         }
     }
 
-    @IBInspectable public var shadowOffset: CGSize {
+    @IBInspectable
+    var shadowOffset: CGSize {
         set {
             layer.shadowOffset = newValue
         }
@@ -93,12 +99,12 @@ import UIKit
         }
     }
 
-    public var isShown: Bool {
+    var isShown: Bool {
         get {
-            return !self.isHidden
+            return !isHidden
         }
         set {
-            self.isHidden = !newValue
+            isHidden = !newValue
         }
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-extension UIScrollView {
+public extension UIScrollView {
     
     func needsMore() -> Observable<UIScrollView> {
         return self.rx.didScroll.map { _ in self }
@@ -21,4 +21,15 @@ extension UIScrollView {
         }
     }
     
+    func calcScrollViewEndingPosition() -> CGPoint {
+        let W = self.contentSize.width
+        let w = self.bounds.width
+        let r = self.contentInset.right
+        
+        let H = self.contentSize.height
+        let h = self.bounds.height
+        let b = self.contentInset.bottom
+        
+        return CGPoint(x: W - w + r, y: H - h + b)
+    }
 }

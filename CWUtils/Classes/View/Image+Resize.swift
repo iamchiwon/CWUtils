@@ -8,12 +8,12 @@
 
 import UIKit
 
-extension UIImage {
-    public func resizedToScreen() -> UIImage {
+public extension UIImage {
+    func resizedToScreen() -> UIImage {
         return resized(maxSize: UIScreen.main.bounds.size)
     }
 
-    public func resized(maxSize: CGSize) -> UIImage {
+    func resized(maxSize: CGSize) -> UIImage {
         let horizontalRatio = maxSize.width / size.width
         let verticalRatio = maxSize.height / size.height
 
