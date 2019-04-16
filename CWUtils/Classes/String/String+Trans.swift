@@ -10,14 +10,15 @@ import Foundation
 
 extension String {
     public func trim() -> String {
-        return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        return trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
 
     public func url() -> URL {
-        if let url = URL(string: self) {
+        let urlText = trim()
+        if let url = URL(string: urlText) {
             return url
         }
-        if let urlString = self.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+        if let urlString = urlText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
             let url = URL(string: urlString) {
             return url
         }
@@ -36,9 +37,9 @@ extension String {
     }
 
     public func replace(_ originalString: String, with newString: String) -> String {
-        return self.replacingOccurrences(of: originalString, with: newString)
+        return replacingOccurrences(of: originalString, with: newString)
     }
-    
+
     public static var uuid: String {
         return UUID().uuidString
     }

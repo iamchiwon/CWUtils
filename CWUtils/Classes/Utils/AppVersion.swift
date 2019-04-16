@@ -27,9 +27,8 @@ public func isUpdateAvailable() -> Bool {
         //확인 불가
         return false
     }
-
-    if let json = json,
-        let result = (json["results"] as? [Any])?.first as? [String: Any],
+    
+    if let result = (json["results"] as? [Any])?.first as? [String: Any],
         let storeVersion = result["version"] as? String {
         //확인 결과
         return (storeVersion.compare(currentVersion, options: .numeric) == .orderedDescending)

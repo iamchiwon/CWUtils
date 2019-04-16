@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = { "iamchiwon" => "iamchiwon@gmail.com" }
   
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '10.0'
   s.source       = { :git => "https://github.com/iamchiwon/CWUtils.git", :tag => s.version.to_s }
   s.source_files = "CWUtils/Classes/**/*"
 
@@ -18,10 +18,12 @@ Pod::Spec.new do |s|
 
   s.dependency "RxSwift"
   s.dependency "RxCocoa"
+  s.dependency "RxSwiftExt"
   s.dependency "RxOptional"
   s.dependency "RxViewController"
   s.dependency "SnapKit"
   s.dependency "Reusable"
   s.dependency "Then"
+  s.dependency "Kingfisher"
 
 end

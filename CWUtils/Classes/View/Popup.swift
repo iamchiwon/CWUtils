@@ -9,11 +9,10 @@
 import UIKit
 
 public func popupOK(on base: UIViewController,
-                        title: String,
-                        message: String?,
-                        buttonTitle: String = "OK",
-                        completion: (() -> ())? = nil) {
-
+                    title: String,
+                    message: String?,
+                    buttonTitle: String = "OK",
+                    completion: (() -> Void)? = nil) {
     let alert = UIAlertController(title: title,
                                   message: message,
                                   preferredStyle: UIAlertController.Style.alert)
@@ -29,21 +28,20 @@ public func popupOK(on base: UIViewController,
 }
 
 public func popupOkCancel(on base: UIViewController,
-                            title: String,
-                            message: String,
-                            okButtonTitle: String = "OK",
-                            cancelButtonTitle: String = "Cancel",
-                            onOk: @escaping () -> ()) {
-
+                          title: String,
+                          message: String,
+                          okButtonTitle: String = "OK",
+                          cancelButtonTitle: String = "Cancel",
+                          onOk: @escaping () -> Void) {
     let alert = UIAlertController(title: title,
                                   message: message,
                                   preferredStyle: UIAlertController.Style.alert)
 
-    alert.addAction( UIAlertAction(title: okButtonTitle.localized(),
-                                   style: UIAlertAction.Style.default,
-                                   handler: { _ in
-                                       onOk()
-                                   }))
+    alert.addAction(UIAlertAction(title: okButtonTitle.localized(),
+                                  style: UIAlertAction.Style.default,
+                                  handler: { _ in
+                                      onOk()
+                                  }))
     alert.addAction(UIAlertAction(title: cancelButtonTitle.localized(),
                                   style: UIAlertAction.Style.cancel,
                                   handler: nil))
