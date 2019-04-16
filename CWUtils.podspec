@@ -8,6 +8,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = { "iamchiwon" => "iamchiwon@gmail.com" }
   
+  s.swift_versions        = '5'
   s.ios.deployment_target = '10.0'
   s.source       = { :git => "https://github.com/iamchiwon/CWUtils.git", :tag => s.version.to_s }
   s.source_files = "CWUtils/Classes/**/*"
