@@ -12,7 +12,7 @@ import UIKit
 public extension UIButton {
     func whenTouchUpInside(throttle dueTime: TimeInterval = 0.3) -> Observable<UIButton> {
         return rx.tap.asDriver()
-            .throttle(dueTime, latest: false)
+            .throttle(.milliseconds(Int(dueTime * 1000)), latest: false)
             .map({ self })
             .asObservable()
     }

@@ -10,7 +10,7 @@ import RxSwift
 import RxSwiftExt
 
 extension ObservableType {
-    public func retryInterval(_ intervals: [RxTimeInterval], when f: @escaping (Error) -> Bool) -> Observable<Self.E> {
+    public func retryInterval(_ intervals: [RxTimeInterval], when f: @escaping (Error) -> Bool) -> Observable<Self.Element> {
         return retryWhen { error -> Observable<Int> in
             error.flatMap { e -> Observable<Void> in
                 guard f(e) else { return .error(e) }
