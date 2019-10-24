@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-func rxLoadImage(_ url: URL) -> Observable<UIImage?> {
+public func rxLoadImage(_ url: URL) -> Observable<UIImage?> {
     return Observable.create { emitter in
         KingfisherManager.shared.retrieveImage(with: url,
                                                completionHandler: { result in
@@ -27,7 +27,7 @@ func rxLoadImage(_ url: URL) -> Observable<UIImage?> {
     }
 }
 
-func rxSaveImage(_ image: UIImage) -> Observable<String?> {
+public func rxSaveImage(_ image: UIImage) -> Observable<String?> {
     return PhotoWriter.save(image)
 }
 
