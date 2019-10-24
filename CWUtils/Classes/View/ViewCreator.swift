@@ -22,6 +22,12 @@ public func createView<T>(_ view: T,
         collectionCell.contentView.addSubview(view)
     case let tableCell as UITableViewCell:
         tableCell.contentView.addSubview(view)
+    case let scrollView as UIScrollView:
+        if let refresh = view as? UIRefreshControl {
+            scrollView.refreshControl = refresh
+        } else {
+            scrollView.addSubview(view)
+        }
     default:
         parent?.addSubview(view)
     }
@@ -34,6 +40,46 @@ public func createView<T>(_ view: T,
         view.snp.makeConstraints(constraint)
     }
     return view
+}
+
+@discardableResult
+func createVStack(parent: UIView?,
+                  spacing: CGFloat = 0,
+                  setting: ((UIStackView) -> Void)? = nil,
+                  constraint: ((ConstraintMaker) -> Void)? = nil) -> UIStackView {
+    return createView(UIStackView(), parent: parent, setting: { v in
+        v.axis = .vertical
+        v.distribution = .fillProportionally
+        v.alignment = .leading
+        v.spacing = spacing
+        setting?(v)
+    }, constraint: constraint)
+}
+
+@discardableResult
+func createHStack(parent: UIView?,
+                  spacing: CGFloat = 0,
+                  setting: ((UIStackView) -> Void)? = nil,
+                  constraint: ((ConstraintMaker) -> Void)? = nil) -> UIStackView {
+    return createView(UIStackView(), parent: parent, setting: { v in
+        v.axis = .horizontal
+        v.distribution = .fillProportionally
+        v.alignment = .center
+        v.spacing = spacing
+        setting?(v)
+    }, constraint: constraint)
+}
+
+@discardableResult
+func createSpacer(parent: UIView?,
+                  width: CGFloat? = nil,
+                  height: CGFloat? = nil) -> UIView {
+    return createView(UIView(), parent: parent, setting: { v in
+        v.backgroundColor = .clear
+    }, constraint: { m in
+        if let w = width { m.width.equalTo(w) }
+        if let h = height { m.height.equalTo(h) }
+    })
 }
 
 extension ConstraintMaker {
