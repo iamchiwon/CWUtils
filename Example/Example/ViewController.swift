@@ -30,6 +30,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = UIColor.darkableColor(.white, darkmode: .darkGray)
+
         let currentTimInMilli: Int = Date.currentTimeInMilli()
         print(currentTimInMilli)
 
@@ -76,6 +78,8 @@ class ViewController: UIViewController {
             .disposed(by: disposeBag)
 
         /** ACTION **/
+
+        view.button(102)?.backgroundColor = UIColor.darkableColor(.systemBlue, darkmode: .orange)
 
         view.button(102)?.whenTouchUpInside()
             .subscribe(onNext: { [unowned self] _ in
@@ -145,35 +149,34 @@ class ViewController: UIViewController {
         /** Building UI  **/
 
         if let bottomView = view.label(201) {
-            let stack = VStack().add(to: view)
-                .spacing(16)
+            let stack = VStack(spacing: 16).add(to: view)
                 .constraint { m in
                     m.top.equalTo(bottomView.snp.bottom).offset(20)
                     m.left.right.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20))
                 }
+
+            Image().add(to: stack)
+                .image(UIImage.darkableImage(#imageLiteral(resourceName: "trust_black"), darkmode: #imageLiteral(resourceName: "trust_white")))
+                .size(100)
 
             books.map(createBookView).forEach { stack.add($0) }
         }
     }
 
     private func createBookView(_ book: Book) -> UIView {
-        return HStack()
-            .spacing(16)
-            .alignment(.center)
-            .distribution(.fillProportionally)
+        return HStack(alignment: .center, spacing: 16, distribution: .fillProportionally)
             .add(
-                VStack()
-                    .spacing(8)
-                    .alignment(.leading)
+                VStack(alignment: .leading, spacing: 8)
                     .add(
-                        UILabel().pd.text(book.title)
+                        Text(book.title)
                             .font(size: 15, weight: .bold)
-                            .textColor(.black).view,
-                        UILabel().pd.text(book.ibsn)
+                            .textColor(UIColor.darkableColor(.black, darkmode: .white)).view,
+
+                        Text(book.ibsn)
                             .font(size: 9, weight: .light)
                             .textColor(.gray).view
                     ).view,
-                UILabel().pd.text(book.author)
+                Text(book.author)
                     .font(size: 12, weight: .light)
                     .textColor(.gray).view
             ).view
