@@ -18,3 +18,13 @@ public extension Reactive where Base: UITableView {
         return items(cellIdentifier: T.reuseIdentifier, cellType: cellType)
     }
 }
+
+extension Reactive where Base: UICollectionView {
+    public func items<S: Sequence, T: UICollectionViewCell, O: ObservableType>(cellType: T.Type)
+        -> (_ source: O)
+        -> (_ configureCell: @escaping (Int, S.Iterator.Element, T) -> Void)
+        -> Disposable
+        where O.E == S, T: Reusable {
+            return items(cellIdentifier: T.reuseIdentifier, cellType: cellType)
+    }
+}

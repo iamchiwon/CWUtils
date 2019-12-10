@@ -6,15 +6,17 @@
 //  Copyright © 2017년 makecube. All rights reserved.
 //
 
-import UIKit
-import RxSwift
 import CWUtils
+import Panda
 import RxOptional
+import RxSwift
+import SnapKit
+import UIKit
 
 struct Book: Codable, Equatable {
     let ibsn: String
     let title: String
-    let auther: String
+    let author: String
 
     static func == (left: Book, right: Book) -> Bool {
         return left.ibsn == right.ibsn
@@ -22,7 +24,6 @@ struct Book: Codable, Equatable {
 }
 
 class ViewController: UIViewController {
-
     let disposeBag = DisposeBag()
     var books: [Book] = []
 
@@ -35,18 +36,18 @@ class ViewController: UIViewController {
         let timeInMillie: Int = Date().timeInMilli()
         print(timeInMillie)
 
-        books.append(Book(ibsn: "ibsn0001", title: "Book1", auther: "Auther1"))
-        books.append(Book(ibsn: "ibsn0002", title: "Book2", auther: "Auther2"))
-        books.append(Book(ibsn: "ibsn0003", title: "Book3", auther: "Auther3"))
-        books.append(Book(ibsn: "ibsn0004", title: "Book4", auther: "Auther4"))
+        books.append(Book(ibsn: "ibsn0001", title: "Book1", author: "Auther1"))
+        books.append(Book(ibsn: "ibsn0002", title: "Book2", author: "Auther2"))
+        books.append(Book(ibsn: "ibsn0003", title: "Book3", author: "Auther3"))
+        books.append(Book(ibsn: "ibsn0004", title: "Book4", author: "Auther4"))
 
-        if let indexOfBook3 = books.indexOf(Book(ibsn: "ibsn0003", title: "Book3", auther: "Auther3")) {
+        if let indexOfBook3 = books.indexOf(Book(ibsn: "ibsn0003", title: "Book3", author: "Auther3")) {
             print("\(indexOfBook3)")
         }
-        _ = books.remove(item: Book(ibsn: "ibsn0002", title: "Book2", auther: "Auther2"))
+        _ = books.remove(item: Book(ibsn: "ibsn0002", title: "Book2", author: "Auther2"))
         print("\(books)")
 
-        let book5 = Book(ibsn: "ibsn0005", title: "Book5", auther: "Auther5")
+        let book5 = Book(ibsn: "ibsn0005", title: "Book5", author: "Auther5")
         let dictionary = book5.dictionary()
         print("\(dictionary)")
 
@@ -77,7 +78,7 @@ class ViewController: UIViewController {
         /** ACTION **/
 
         view.button(102)?.whenTouchUpInside()
-            .subscribe(onNext: { [unowned self] button in
+            .subscribe(onNext: { [unowned self] _ in
                 guard let text = self.view.textfield(101)?.text else { return }
 
                 if text.isValid(withType: .email) {
@@ -88,14 +89,14 @@ class ViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-        self.view.textfield(101)?.rx.controlEvent(event: .editingDidEndOnExit)
+        view.textfield(101)?.rx.controlEvent(event: .editingDidEndOnExit)
             .map({ $0.sender.text?.trim() })
             .filterNil()
             .filter(isNotEmpty)
             .subscribe(onNext: { print($0) })
             .disposed(by: disposeBag)
 
-        self.view.textfield(101)?.rx.text
+        view.textfield(101)?.rx.text
             .asObservable()
             .bind(to: view.label(201)!.rx.text)
             .disposed(by: disposeBag)
@@ -120,18 +121,18 @@ class ViewController: UIViewController {
         /** KEYBOARD EVENT **/
 
         whenKeyboardShowNotification()
-            .subscribe(onNext: { (keyboardHeight: CGFloat, duration: TimeInterval) in
+            .subscribe(onNext: { (_: CGFloat, _: TimeInterval) in
                 print("keyboard showing")
             })
             .disposed(by: disposeBag)
 
         whenKeyboardHideNotification()
-            .subscribe(onNext: { (duration: TimeInterval) in
+            .subscribe(onNext: { (_: TimeInterval) in
                 print("keyboard hide")
             })
             .disposed(by: disposeBag)
 
-        self.view.addTapGestureRecognizer()
+        view.addTapGestureRecognizer()
             .subscribe(onNext: { [unowned self] _ in
                 self.view.endEditing(true)
             })
@@ -140,6 +141,42 @@ class ViewController: UIViewController {
         /** VERSION CHECK **/
 
         checkVersion()
+
+        /** Building UI  **/
+
+        if let bottomView = view.label(201) {
+            let stack = VStack().add(to: view)
+                .spacing(16)
+                .constraint { m in
+                    m.top.equalTo(bottomView.snp.bottom).offset(20)
+                    m.left.right.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20))
+                }
+
+            books.map(createBookView).forEach { stack.add($0) }
+        }
+    }
+
+    private func createBookView(_ book: Book) -> UIView {
+        return HStack()
+            .spacing(16)
+            .alignment(.center)
+            .distribution(.fillProportionally)
+            .add(
+                VStack()
+                    .spacing(8)
+                    .alignment(.leading)
+                    .add(
+                        UILabel().pd.text(book.title)
+                            .font(size: 15, weight: .bold)
+                            .textColor(.black).view,
+                        UILabel().pd.text(book.ibsn)
+                            .font(size: 9, weight: .light)
+                            .textColor(.gray).view
+                    ).view,
+                UILabel().pd.text(book.author)
+                    .font(size: 12, weight: .light)
+                    .textColor(.gray).view
+            ).view
     }
 
     func checkVersion() {
@@ -154,4 +191,3 @@ class ViewController: UIViewController {
         }
     }
 }
-

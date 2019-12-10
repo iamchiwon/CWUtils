@@ -15,13 +15,13 @@ public extension UIView {
         tapGesture.numberOfTapsRequired = numberOfTapsRequired
         isUserInteractionEnabled = true
         addGestureRecognizer(tapGesture)
-        return tapGesture.rx.event.asDriver().asObservable()
+        return tapGesture.rx.event.asObservable().observeOn(Schedulers.main)
     }
 
     func addSwipeGestureRecognizer() -> Observable<UISwipeGestureRecognizer> {
         let swipeGesture = UISwipeGestureRecognizer()
         isUserInteractionEnabled = true
         addGestureRecognizer(swipeGesture)
-        return swipeGesture.rx.event.asDriver().asObservable()
+        return swipeGesture.rx.event.asObservable().observeOn(Schedulers.main)
     }
 }
