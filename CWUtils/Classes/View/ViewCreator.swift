@@ -43,7 +43,7 @@ public func createView<T>(_ view: T,
 }
 
 @discardableResult
-func createVStack(parent: UIView?,
+public func createVStack(parent: UIView?,
                   spacing: CGFloat = 0,
                   setting: ((UIStackView) -> Void)? = nil,
                   constraint: ((ConstraintMaker) -> Void)? = nil) -> UIStackView {
@@ -57,7 +57,7 @@ func createVStack(parent: UIView?,
 }
 
 @discardableResult
-func createHStack(parent: UIView?,
+public func createHStack(parent: UIView?,
                   spacing: CGFloat = 0,
                   setting: ((UIStackView) -> Void)? = nil,
                   constraint: ((ConstraintMaker) -> Void)? = nil) -> UIStackView {
@@ -71,7 +71,7 @@ func createHStack(parent: UIView?,
 }
 
 @discardableResult
-func createSpacer(parent: UIView?,
+public func createSpacer(parent: UIView?,
                   width: CGFloat? = nil,
                   height: CGFloat? = nil) -> UIView {
     return createView(UIView(), parent: parent, setting: { v in
