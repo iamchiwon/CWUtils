@@ -8,20 +8,23 @@
 import XCTest
 
 extension XCTestCase {
-    public func await(_ description: String = "", timeout: TimeInterval = 3, testing: @escaping (() -> Void) -> Void) {
+    public func await(_ description: String = "", timeout: TimeInterval = 3, testing: @escaping (@escaping () -> Void) -> Void) {
         let exp = expectation(description: description)
-        let done: () -> Void = { exp.fulfill() }
-
         let startTime = Date().timeIntervalSince1970 * 1000
+        let done: () -> Void = {
+            let diff = Date().timeIntervalSince1970 * 1000 - startTime
+
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = NumberFormatter.Style.decimal
+            numberFormatter.maximumSignificantDigits = 2
+
+            let diffStr = numberFormatter.string(from: NSNumber(value: diff)) ?? "N/A"
+            print("[AWAIT] \(description) : \(diffStr) (ms)")
+
+            exp.fulfill()
+        }
+
         testing(done)
-        let diff = Date().timeIntervalSince1970 * 1000 - startTime
-
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = NumberFormatter.Style.decimal
-        numberFormatter.maximumSignificantDigits = 2
-
-        let diffStr = numberFormatter.string(from: NSNumber(value: diff)) ?? "N/A"
-        print("[AWAIT] \(description) : \(diffStr) (ms)")
 
         waitForExpectations(timeout: timeout + 0.1)
     }

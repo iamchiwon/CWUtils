@@ -25,12 +25,14 @@ class ExampleTests: XCTestCase {
 
         // when
         await("after 1 second") { done in
-            sleep(1)
-            a = 1
+            DispatchQueue.main.async {
+                sleep(1)
+                a = 1
 
-            // then
-            XCTAssertEqual(a, 1)
-            done()
+                // then
+                XCTAssertEqual(a, 1)
+                done()
+            }
         }
 
         // after
