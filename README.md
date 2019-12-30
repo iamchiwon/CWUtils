@@ -15,7 +15,7 @@ pod 'CWUtils'
 ```
   
 #### Swift Package Manager
-Match target to right product
+Match target to right product  
 ![](./Docs/spm.png)
 
 
