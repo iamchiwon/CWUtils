@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "CWUtilsTest"
-  s.version      = "1.1.0"
+  s.version      = "1.1.1"
   s.summary      = "iOS 어플리케이션 개발용 유틸리티 모음"
   s.description  = "테스트용 유틸리티 편"
 
