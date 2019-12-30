@@ -145,7 +145,7 @@ let resized = original?.resized(maxSize: CGSize(width: 100, height: 100))
 let resizedForScreen = original?.resizedToScreen()
 ```
 
-#### View Createor (with SnapKit)
+#### View Creator (with SnapKit)
 
 ```swift
 let rect = createView(UIView(), parent: self.view, setting: { v in

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public let i2s: (Int) -> String = { "\($0)" }
 
@@ -35,17 +36,17 @@ public func isNotEmpty(_ a: String?) -> Bool {
 
 func curry<A, B, C>(_ f: @escaping ((A, B) -> C)) -> (A) -> (B) -> C {
     return { a in
-        return { b in
-            return f(a, b)
+        { b in
+            f(a, b)
         }
     }
 }
 
 func curry<A, B, C, D>(_ f: @escaping ((A, B, C) -> D)) -> (A) -> (B) -> (C) -> D {
     return { a in
-        return { b in
-            return { c in
-                return f(a, b, c)
+        { b in
+            { c in
+                f(a, b, c)
             }
         }
     }
