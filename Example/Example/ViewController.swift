@@ -23,32 +23,45 @@ struct Book: Codable, Equatable {
     }
 }
 
-class ViewController: UIViewController {
-    let disposeBag = DisposeBag()
+class ViewController: CWViewController {
     var books: [Book] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.darkableColor(.white, darkmode: .darkGray)
+        buildBookData()
+        examTime()
+        examList()
+        examCodable()
 
+        /** VERSION CHECK **/
+        checkVersion()
+    }
+
+    func buildBookData() {
+        books.append(Book(ibsn: "ibsn0001", title: "Book1", author: "Auther1"))
+        books.append(Book(ibsn: "ibsn0002", title: "Book2", author: "Auther2"))
+        books.append(Book(ibsn: "ibsn0003", title: "Book3", author: "Auther3"))
+        books.append(Book(ibsn: "ibsn0004", title: "Book4", author: "Auther4"))
+    }
+
+    func examTime() {
         let currentTimInMilli: Int = Date.currentTimeInMilli()
         print(currentTimInMilli)
 
         let timeInMillie: Int = Date().timeInMilli()
         print(timeInMillie)
+    }
 
-        books.append(Book(ibsn: "ibsn0001", title: "Book1", author: "Auther1"))
-        books.append(Book(ibsn: "ibsn0002", title: "Book2", author: "Auther2"))
-        books.append(Book(ibsn: "ibsn0003", title: "Book3", author: "Auther3"))
-        books.append(Book(ibsn: "ibsn0004", title: "Book4", author: "Auther4"))
-
+    func examList() {
         if let indexOfBook3 = books.indexOf(Book(ibsn: "ibsn0003", title: "Book3", author: "Auther3")) {
             print("\(indexOfBook3)")
         }
         _ = books.remove(item: Book(ibsn: "ibsn0002", title: "Book2", author: "Auther2"))
         print("\(books)")
+    }
 
+    func examCodable() {
         let book5 = Book(ibsn: "ibsn0005", title: "Book5", author: "Auther5")
         let dictionary = book5.dictionary()
         print("\(dictionary)")
@@ -58,33 +71,44 @@ class ViewController: UIViewController {
 
         let decoded: Book = dictionary.decode()!
         print("\(decoded)")
+    }
 
-        /** IMAGE SET **/
-
-        view.imageView(100)?.addTapGestureRecognizer()
-            .flatMap({ _ in
-                UIImagePickerController.pickImage(on: self, allowsEditing: true)
+    func checkVersion() {
+        let needUpdate: Bool = isUpdateAvailable()
+        if needUpdate {
+            popupOkCancel(on: self, title: "업데이트", message: "업데이트가 필요합니다.", onOk: {
+                let urlString = "itms-apps://itunes.apple.com/app/id0000000000"
+                UIApplication.shared.open(urlString.url(), options: [:], completionHandler: nil)
             })
-            .map({ original -> UIImage in
-                let resized = original.resized(maxSize: CGSize(width: 100, height: 100))
-                print("resized(100,100) : \(resized)")
-                let resizedForScreen = original.resizedToScreen()
-                print("resized(100,100) : \(resizedForScreen)")
-                return resized
-            })
-            .subscribe(onNext: { [unowned self] resized in
-                self.view.imageView(100)?.image = resized
-            })
-            .disposed(by: disposeBag)
+        } else {
+            popupOK(on: self, title: "업데이트", message: "최신버전입니다.")
+        }
+    }
+}
 
-        /** ACTION **/
+extension ViewController {
+    func setupBinds() {
+        if let imageView = view.imageView(100) {
+            imageView.addTapGestureRecognizer()
+                .flatMap { _ in
+                    UIImagePickerController.pickImage(on: self, allowsEditing: true)
+                }
+                .map { original -> UIImage in
+                    let resized = original.resized(maxSize: CGSize(width: 100, height: 100))
+                    print("resized(100,100) : \(resized)")
 
-        view.button(102)?.backgroundColor = UIColor.darkableColor(.systemBlue, darkmode: .orange)
+                    let resizedForScreen = original.resizedToScreen()
+                    print("resizedToScreen : \(resizedForScreen)")
+
+                    return resized
+                }
+                .bind(to: imageView.rx.image)
+                .disposed(by: disposeBag)
+        }
 
         view.button(102)?.whenTouchUpInside()
-            .subscribe(onNext: { [unowned self] _ in
-                guard let text = self.view.textfield(101)?.text else { return }
-
+            .map { [weak self] _ in self?.view.textfield(101)?.text ?? "" }
+            .subscribe(onNext: { text in
                 if text.isValid(withType: .email) {
                     popupOK(on: self, title: "이메일", message: text)
                 } else {
@@ -105,23 +129,6 @@ class ViewController: UIViewController {
             .bind(to: view.label(201)!.rx.text)
             .disposed(by: disposeBag)
 
-        /** INFOMATION SET **/
-
-        let today = Date().formatted("YYYY-MM-dd")
-
-        var deviceInfo = ""
-        runOnSimulatorOnly {
-            deviceInfo = "Simulator "
-        }
-
-        runOnDeviceOnly {
-            deviceInfo = "Device "
-        }
-
-        let versionInfo = currentApplicationVersion()
-
-        view.label(200)?.text = "\(today) / \(deviceInfo) / \(versionInfo)"
-
         /** KEYBOARD EVENT **/
 
         whenKeyboardShowNotification()
@@ -135,16 +142,15 @@ class ViewController: UIViewController {
                 print("keyboard hide")
             })
             .disposed(by: disposeBag)
+    }
+}
 
-        view.addTapGestureRecognizer()
-            .subscribe(onNext: { [unowned self] _ in
-                self.view.endEditing(true)
-            })
-            .disposed(by: disposeBag)
+extension ViewController {
+    func setupViews() {
+        setAppInfo()
 
-        /** VERSION CHECK **/
-
-        checkVersion()
+        view.button(102)?.backgroundColor =
+            UIColor.darkableColor(.systemBlue, darkmode: .orange)
 
         /** Building UI  **/
 
@@ -182,15 +188,20 @@ class ViewController: UIViewController {
             ).view
     }
 
-    func checkVersion() {
-        let needUpdate: Bool = isUpdateAvailable()
-        if needUpdate {
-            popupOkCancel(on: self, title: "업데이트", message: "업데이트가 필요합니다.", onOk: {
-                let urlString = "itms-apps://itunes.apple.com/app/id0000000000"
-                UIApplication.shared.open(urlString.url(), options: [:], completionHandler: nil)
-            })
-        } else {
-            popupOK(on: self, title: "업데이트", message: "최신버전입니다.")
+    private func setAppInfo() {
+        let today = Date().formatted("YYYY-MM-dd")
+
+        var deviceInfo = ""
+        runOnSimulatorOnly {
+            deviceInfo = "Simulator "
         }
+
+        runOnDeviceOnly {
+            deviceInfo = "Device "
+        }
+
+        let versionInfo = currentApplicationVersion()
+
+        view.label(200)?.text = "\(today) / \(deviceInfo) / \(versionInfo)"
     }
 }

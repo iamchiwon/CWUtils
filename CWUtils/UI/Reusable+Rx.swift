@@ -24,7 +24,7 @@ extension Reactive where Base: UICollectionView {
         -> (_ source: O)
         -> (_ configureCell: @escaping (Int, S.Iterator.Element, T) -> Void)
         -> Disposable
-        where O.E == S, T: Reusable {
+        where O.Element == S, T: Reusable {
             return items(cellIdentifier: T.reuseIdentifier, cellType: cellType)
     }
 }

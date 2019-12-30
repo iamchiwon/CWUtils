@@ -209,15 +209,6 @@ pickImageFromAlbum(on: self, withEdit: true)
     .subscribe(onNext: {  self.imageView.image = $0 })
 ```
 
-## History
-
-- 0.16.0 : Panda and extensions, darkmode
-- 0.15.0 : image load/save w/ Rx
-- 0.14.0 : Swift 5, target iOS 10.0
-- 0.13.0 : executors
-- 0.12.0 : Extensions (String, Number, URL), Functions (currying)
-- ...
-
 ## Author
 
 iamchiwon, iamchiwon@gmail.com
