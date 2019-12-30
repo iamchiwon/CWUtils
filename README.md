@@ -6,12 +6,18 @@
 
 ## Installation
 
+#### Cocoapods 
 CWUtils is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'CWUtils'
 ```
+  
+#### Swift Package Manager
+Match target to right product
+![](./Docs/spm.png)
+
 
 ## Dependancies
 
@@ -145,7 +151,7 @@ let resized = original?.resized(maxSize: CGSize(width: 100, height: 100))
 let resizedForScreen = original?.resizedToScreen()
 ```
 
-#### View Createor (with SnapKit)
+#### View Creator (with SnapKit)
 
 ```swift
 let rect = createView(UIView(), parent: self.view, setting: { v in

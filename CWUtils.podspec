@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name         = "CWUtils"
-  s.version      = "1.1.0"
+  s.version      = "1.1.1"
   s.summary      = "iOS 어플리케이션 개발용 유틸리티 모음"
-  s.description  = "RxSwift 를 기반으로 하고 있음. (Dependancy : RxSwift, RxCocoa, RxOptional)"
+  s.description  = "RxSwift 를 기반으로 하고 있음"
 
   s.homepage     = "https://github.com/iamchiwon/CWUtils"
   s.license      = { :type => "MIT", :file => "LICENSE" }
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.swift_versions        = '5'
   s.ios.deployment_target = '10.0'
   s.source       = { :git => "https://github.com/iamchiwon/CWUtils.git", :tag => s.version.to_s }
-  s.source_files = "CWUtils/Core/**/*", "CWUtils/UI/**/*"
+  s.source_files = "Sources/CWUtils/**/*"
 
   # CORE
   s.dependency "RxSwift"
