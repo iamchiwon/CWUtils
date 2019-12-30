@@ -6,12 +6,18 @@
 
 ## Installation
 
+#### Cocoapods 
 CWUtils is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'CWUtils'
 ```
+  
+#### Swift Package Manager
+Match target to right product
+![](./Docs/spm.png)
+
 
 ## Dependancies
 
